@@ -1,3 +1,4 @@
 pymongo
 pandas
 progressbar2
+mongomock
