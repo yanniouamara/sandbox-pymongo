@@ -7,7 +7,8 @@ def main():
     db = client[MONGODB_DB]
 
     '''
-    TRAINING : Get all `vehicules` where `num_veh` is `B01`
+    TRAINING : DELETE column `obsm` in `vehicules` 
+        ONLY for documents where `num_veh` is `B01`
     
     ONLY 1 QUERY ALLOWED
     '''

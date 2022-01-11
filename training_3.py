@@ -7,7 +7,9 @@ def main():
     db = client[MONGODB_DB]
 
     '''
-    TRAINING : Get all `vehicules` where `num_veh` is `B01`
+    TRAINING : Create 1 `vehicules` where 
+        `motor` = 6
+        `id_vehicules` = '154 742 270'
     
     ONLY 1 QUERY ALLOWED
     '''

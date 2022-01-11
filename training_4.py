@@ -7,7 +7,8 @@ def main():
     db = client[MONGODB_DB]
 
     '''
-    TRAINING : Get all `vehicules` where `num_veh` is `B01`
+    TRAINING : Add the column `why_not`='because' in `vehicules` 
+        ONLY for documents where `motor` is >= `3` and < 5
     
     ONLY 1 QUERY ALLOWED
     '''

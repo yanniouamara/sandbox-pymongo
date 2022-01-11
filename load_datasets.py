@@ -1,17 +1,21 @@
 import pandas as pd
 import progressbar
-from database import Database
+from pymongo import MongoClient
+from settings import *
 
 
 def main():
+    client = MongoClient(MONGODB_DSN)
+    db = client[MONGODB_DB]
+
     print('\nVehicules : ')
     df = pd.read_csv('datasets/vehicules-2020.csv', sep=';')
-    Database.get_instance().vehicules.drop()
+    db.vehicules.drop()
 
     bar = progressbar.ProgressBar(max_value=len(df))
     i = 0
     for r in df.iterrows():
-        Database.get_instance().vehicules.insert_one(
+        db.vehicules.insert_one(
             r[1].to_dict()
         )
         i += 1
@@ -19,12 +23,12 @@ def main():
 
     print('\nLieux : ')
     df = pd.read_csv('datasets/lieux-2020.csv', sep=';')
-    Database.get_instance().lieux.drop()
+    db.lieux.drop()
 
     bar = progressbar.ProgressBar(max_value=len(df))
     i = 0
     for r in df.iterrows():
-        Database.get_instance().lieux.insert_one(
+        db.lieux.insert_one(
             r[1].to_dict()
         )
         i += 1
@@ -32,12 +36,12 @@ def main():
 
     print('\nUsagers : ')
     df = pd.read_csv('datasets/usagers-2020.csv', sep=';')
-    Database.get_instance().usagers.drop()
+    db.usagers.drop()
 
     bar = progressbar.ProgressBar(max_value=len(df))
     i = 0
     for r in df.iterrows():
-        Database.get_instance().usagers.insert_one(
+        db.usagers.insert_one(
             r[1].to_dict()
         )
         i += 1
@@ -45,12 +49,12 @@ def main():
 
     print('\nCaracteristiques : ')
     df = pd.read_csv('datasets/caracteristiques-2020.csv', sep=';')
-    Database.get_instance().caracteristiques.drop()
+    db.caracteristiques.drop()
 
     bar = progressbar.ProgressBar(max_value=len(df))
     i = 0
     for r in df.iterrows():
-        Database.get_instance().caracteristiques.insert_one(
+        db.caracteristiques.insert_one(
             r[1].to_dict()
         )
         i += 1

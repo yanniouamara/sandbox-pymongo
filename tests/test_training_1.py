@@ -1,15 +1,17 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 import mongomock
+from settings import *
 
-from database import Database
 from training_1 import main as main_training_1
 
 
 class TestSandbox(unittest.TestCase):
     def test_init(self):
-        with patch("database.MongoClient", side_effect=mongomock.MongoClient):
+        mock_mongo_client = Mock()
+        mock_mongo_client.return_value = {
+            MONGODB_DB: mongomock.MongoClient()[MONGODB_DB]
+        }
+        with patch("training_1.MongoClient", mock_mongo_client):
             main_training_1()
-
-            posts = Database.get_instance().posts.find({})
-            print(list(posts))
+            print(list(mock_mongo_client()[MONGODB_DB].posts.find({})))

@@ -7,7 +7,7 @@ def main():
     db = client[MONGODB_DB]
 
     '''
-    TRAINING : Get all `vehicules` where `num_veh` is `B01`
+    TRAINING : Get all `vehicules` where `motor` is >= `3` and < 5
     
     ONLY 1 QUERY ALLOWED
     '''
