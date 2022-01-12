@@ -7,8 +7,6 @@ def main():
     db = client[MONGODB_DB]
 
     db.vehicules.insert_one({"_id": '154 742 270', "motor": 6})
-
-    print(db.vehicules.find({"_id": '154 742 270'}).pretty())
     '''
     TRAINING : Create 1 `vehicules` where 
         `motor` = 6
