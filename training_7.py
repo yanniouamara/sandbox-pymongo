@@ -6,13 +6,17 @@ def main():
     client = MongoClient(MONGODB_DSN)
     db = client[MONGODB_DB]
 
-    db.vehicules.aggregate([{"$lookup" :
-                                 {"from": "caracteristiques",
-                                  "localField": "_id",
-                                  'foreignField': "Num_Acc",
-                                  'as': 'adr'}})
+    db.vehicules.aggregate([{"$project":
+                                 {"$lookup":
+                                     {"from": "caracteristiques",
+                                      "localField": "Num_Acc",
+                                      'foreignField': "Num_Acc",
+                                      'as': 'lookupadr'}
+                                  }
+                             }
+                            ])
 
-    '''
+'''
     TRAINING : 
         Get all `adr`.`caracteristiques` and `num_veh`.`vehicules` 
     
